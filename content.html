@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<style>
+    #container1{
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        gap: 25px;
+        margin:auto;
+        margin-top: 15px;
+       
+    }
+</style>
+<body>
+    <nav id="nav">
+        <div style="margin-top:10px;display:flex;">
+            <h2><a href="trending.html">Trending Movies</a></h2>
+            <h2> <a href="index.html">Home</a></h2>
+        </div>
+        
+        <div id="inputDiv">
+           
+            <input oninput="debounce(main,1000)" type="text" id="query" placeholder="Search..">
+            <button >SUBSCRIBE</button>
+            <div style="text-align:right; font-size:20px;margin-top:-25px;margin-right: 59px; font-family: sans-serif;  font-weight: bold;color:white">LOGIN</div>
+        </div>
+        <div style="margin-left: 700px;" id="movies"></div>
+    </nav>
+    <div id="container1"></div>
+</body>
+</html>
+<script>
+    //231248064ba9e7121ef30ede839921ec
+    const getData= ()=>{
+        try {
+            // let response= await fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=231248064ba9e7121ef30ede839921ec`);
+            // let data = response.json();
+            // console.log(data);
+            fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=231248064ba9e7121ef30ede839921ec`).then(response => response.json()).then(data => {
+                appendData(data.results)
+                console.log((data.results))
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getData();
+
+    const appendData=(data)=>{
+        data.forEach(({title,poster_path,vote_average,overview})=>{
+
+            let rowDiv = document.createElement("div");
+            // rowDiv.setAttribute("style","border:1px solid green;")
+
+            let colDive1=document.createElement("div");
+            // colDive1.setAttribute("style","border:1px solid red;")
+
+           
+            let colDive2=document.createElement("div");
+            colDive2.setAttribute("style","color:white;justify-content:space-around;display:flex;background-color:#190d27;")
+
+            let img = document.createElement("img");
+            img.src ="https://image.tmdb.org/t/p/w500"+poster_path;
+            img.setAttribute("style","height:90%; width:100%;");
+
+            let name = document.createElement("h4");
+            name.innerText=title;
+
+            let vote = document.createElement("h3");
+            vote.innerText=vote_average;
+            vote.setAttribute("style", "color:rgb(247, 197, 60);background-color:black;width:12%; text-align:center;1")
+
+           
+
+            colDive1.append(img);
+            colDive2.append(name,vote)
+            rowDiv.append(colDive1,colDive2);
+            document.getElementById("container1").append(rowDiv);
+        })
+    }
+</script>

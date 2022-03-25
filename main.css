@@ -48,3 +48,55 @@ ul {
 #main {
   padding: 3%;
 }
+
+#movies{
+  width: 350px;;
+  height: 250px;
+  /* border: 1px solid rgb(135, 156, 135); */
+  align-items: right;
+  border-top: none;
+  /* overflow: scroll; */
+  margin-top: 15px;
+}
+
+#container{
+ margin-top: 25px;
+
+}
+.fa-thumbs-up{
+ font-size: 45px;
+}
+.rowDive
+{
+  border:1px solid; width:100%;height:100px;display:flex;
+  background-color: #192133;
+  border-radius:8px; 
+   margin-bottom:5px;
+}
+#nav{
+ 
+  width: 100%;
+  height: 100px;
+  background-color: #131a27;
+}
+input{
+width: 25%;
+height: 25px;
+border-radius: 6px;
+margin-left: 700px;
+margin-bottom: -95px;
+font-size:18px;
+}
+button{
+  border-radius: 6px; 
+   height: 30px;background-color: #1f80e0;
+   color:white;
+   margin-top: -80px;
+  }
+  a{
+      text-decoration: none;
+      color:white;
+     margin-left: 200px;
+     margin-top: 150px;
+  }
+
